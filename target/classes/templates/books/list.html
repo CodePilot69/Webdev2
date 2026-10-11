@@ -3,77 +3,49 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Book Library</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; background: #f0f2f5; }
-        .container { max-width: 900px; margin: 32px auto; padding: 0 16px; }
-        h1 { color: #1a252f; }
-        table { width: 100%; border-collapse: collapse; background: #fff;
-                border-radius: 8px; overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0,0,0,.1); }
-        th { background: #1a252f; color: #fff; padding: 12px 16px; text-align: left; }
-        td { padding: 11px 16px; border-bottom: 1px solid #eee; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background: #f8f9fa; }
-        .btn       { display:inline-block; padding:6px 14px; border-radius:4px;
-                     text-decoration:none; font-size:.85rem; cursor:pointer;
-                     border:none; }
-        .btn-add   { background:#27ae60; color:#fff; margin-bottom:16px;
-                     padding:10px 20px; font-size:1rem; }
-        .btn-edit  { background:#2980b9; color:#fff; }
-        .btn-del   { background:#e74c3c; color:#fff; }
-        .empty     { color:#888; font-style:italic; margin-top:24px; }
-    </style>
 </head>
 <body>
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="container">
-        <h1>📚 Book Library</h1>
+    <h1>Book Library</h1>
 
-        <a class="btn btn-add" th:href="@{/books/new}">+ Add New Book</a>
+    <a th:href="@{/books/new}">+ Add New Book</a>
 
-        <!-- Empty state -->
-        <p class="empty" th:if="${#lists.isEmpty(books)}">
-            No books in the library yet. Add one above!
-        </p>
+    <p th:if="${#lists.isEmpty(books)}">
+        No books in the library yet. Add one above!
+    </p>
 
-        <!-- Book list table -->
-        <table th:if="${!#lists.isEmpty(books)}">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>ISBN</th>
-                    <th>Year</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="book : ${books}">
-                    <td th:text="${book.id}">1</td>
-                    <td th:text="${book.title}">Title</td>
-                    <td th:text="${book.author}">Author</td>
-                    <td th:text="${book.isbn}">ISBN</td>
-                    <td th:text="${book.year}">2024</td>
-                    <td>
-                        <!-- Edit link -->
-                        <a class="btn btn-edit"
-                           th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
-
-                        <!-- Delete form (POST) -->
-                        <form th:action="@{/books/{id}/delete(id=${book.id})}"
-                              method="post" style="display:inline"
-                              onsubmit="return confirm('Delete this book?')">
-                            <button class="btn btn-del" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table th:if="${!#lists.isEmpty(books)}">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Year</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}">1</td>
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.year}">2024</td>
+                <td>
+                    <a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+                    |
+                    <form th:action="@{/books/{id}/delete(id=${book.id})}"
+                          method="post" style="display:inline"
+                          onsubmit="return confirm('Delete this book?')">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
