@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-
-<!--
-    Task 3 — Shared navigation fragment.
-    Included in both products.html and product-detail.html via th:replace.
-    Defined once here — never duplicated.
--->
 <nav th:fragment="navbar">
-    <div style="background:#2c3e50;padding:12px 24px;display:flex;align-items:center;gap:24px;">
-        <span style="color:#ecf0f1;font-size:1.2rem;font-weight:bold;">🛒 WebDev2 Shop</span>
-        <a th:href="@{/products}"
-           style="color:#ecf0f1;text-decoration:none;font-size:0.95rem;">Products</a>
-        <a th:href="@{/products/new}"
-           style="color:#ecf0f1;text-decoration:none;font-size:0.95rem;">Add Product</a>
-    </div>
+    <a th:href="@{/products}">Products</a> |
+    <a th:href="@{/products/new}">Add Product</a>
+    <hr/>
 </nav>
-
 </body>
 </html>
