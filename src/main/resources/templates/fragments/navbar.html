@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar">
+    <div style="background:#1a252f;padding:12px 24px;display:flex;align-items:center;gap:24px;">
+        <span style="color:#ecf0f1;font-size:1.2rem;font-weight:bold;">📚 Book Library</span>
+        <a th:href="@{/books}"
+           style="color:#ecf0f1;text-decoration:none;">All Books</a>
+        <a th:href="@{/books/new}"
+           style="color:#ecf0f1;text-decoration:none;">+ Add Book</a>
+    </div>
+</nav>
+</body>
+</html>

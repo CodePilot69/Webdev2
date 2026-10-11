@@ -1,0 +1,5 @@
+com\webdev2\BookRepository.class
+com\webdev2\BookController.class
+com\webdev2\Book.class
+com\webdev2\BookService.class
+com\webdev2\Webdev2Application.class
