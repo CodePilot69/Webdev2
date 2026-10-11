@@ -1,0 +1,7 @@
+com\webdev2\StartupReportRunner.class
+com\webdev2\Product.class
+com\webdev2\ProductService.class
+com\webdev2\ProductRepository.class
+com\webdev2\Webdev2Application.class
+com\webdev2\ShopProperties.class
+META-INF\spring-configuration-metadata.json
