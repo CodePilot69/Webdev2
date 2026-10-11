@@ -1,0 +1,5 @@
+com\webdev2\Product.class
+com\webdev2\ProductController.class
+com\webdev2\ProductRepository.class
+com\webdev2\Webdev2Application.class
+com\webdev2\Category.class
