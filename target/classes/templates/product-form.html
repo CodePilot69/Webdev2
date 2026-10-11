@@ -3,62 +3,32 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Add Product</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f5f6fa; }
-        .container { max-width: 500px; margin: 32px auto; padding: 0 16px; }
-        .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); padding: 24px; }
-        .card h2 { margin-top: 0; color: #2c3e50; }
-        .form-group { margin-bottom: 16px; }
-        label { display: block; font-weight: bold; margin-bottom: 4px; color: #555; }
-        input[type=text], input[type=number] {
-            width: 100%; padding: 8px 10px; border: 1px solid #ccc;
-            border-radius: 4px; box-sizing: border-box; font-size: 1rem;
-        }
-        .error { color: #e74c3c; font-size: 0.85rem; margin-top: 4px; }
-        button { padding: 10px 24px; background: #2c3e50; color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; }
-        a.back { display: inline-block; margin-top: 12px; color: #2c3e50; }
-    </style>
 </head>
 <body>
 
-    <!-- Task 3 — navbar fragment -->
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="container">
-        <div class="card">
-            <h2>Add New Product</h2>
+    <h2>Add New Product</h2>
 
-            <!--
-                Task 4 — th:action points to POST /products
-                          th:object binds the form to the Product backing object
-                          th:field binds each input to a Product field
-            -->
-            <form th:action="@{/products}" th:object="${product}" method="post">
+    <form th:action="@{/products}" th:object="${product}" method="post">
 
-                <!-- Name field -->
-                <div class="form-group">
-                    <label for="name">Product Name</label>
-                    <input type="text" id="name" th:field="*{name}" placeholder="e.g. Monitor"/>
-                    <!-- Task 5 — display binding/validation error for name -->
-                    <span class="error" th:if="${#fields.hasErrors('name')}"
-                          th:errors="*{name}">Name error</span>
-                </div>
-
-                <!-- Price field -->
-                <div class="form-group">
-                    <label for="price">Price (PHP)</label>
-                    <input type="text" id="price" th:field="*{price}" placeholder="e.g. 5000"/>
-                    <!-- Task 5 — display binding/validation error for price -->
-                    <span class="error" th:if="${#fields.hasErrors('price')}"
-                          th:errors="*{price}">Price error</span>
-                </div>
-
-                <button type="submit">Save Product</button>
-            </form>
-
-            <a class="back" th:href="@{/products}">← Back to list</a>
+        <div>
+            <label for="name">Product Name</label><br/>
+            <input type="text" id="name" th:field="*{name}" placeholder="e.g. Monitor"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
-    </div>
+        <br/>
+        <div>
+            <label for="price">Price (PHP)</label><br/>
+            <input type="text" id="price" th:field="*{price}" placeholder="e.g. 5000"/>
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <br/>
+        <button type="submit">Save Product</button>
+    </form>
+
+    <br/>
+    <a th:href="@{/products}">Back to list</a>
 
 </body>
 </html>
